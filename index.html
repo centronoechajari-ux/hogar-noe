@@ -2,151 +2,623 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Conocé Hogar Noé en Chajarí, Entre Ríos.">
-  <title>Hogar Noé | Una nueva oportunidad</title>
-  <link rel="stylesheet" href="estilos.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Hogar Noé, en Chajarí, Entre Ríos. Un espacio de convivencia, fe, responsabilidad y esperanza para comenzar una nueva etapa.">
+
+    <meta name="theme-color" content="#174d38">
+
+    <title>Hogar Noé | Una nueva oportunidad de empezar</title>
+
+    <link rel="stylesheet" href="estilos.css">
 </head>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    
+const enlaces = document.querySelectorAll(
+  'a[href="#inicio"], ' +
+  'a[href="#nosotros"], ' +
+  'a[href="#programa"], ' +
+  'a[href="#boton-whatsapp-contacto"], ' +
+  'a[href="#donaciones"]'
+);
+
+
+    let animacionActiva = false;
+
+    enlaces.forEach(function (enlace) {
+        enlace.addEventListener("click", function (evento) {
+            const destinoId = enlace.getAttribute("href").substring(1);
+            const elementoDestino = document.getElementById(destinoId);
+
+            if (!elementoDestino || animacionActiva) return;
+
+            evento.preventDefault();
+            animacionActiva = true;
+
+            const inicio = window.scrollY;
+            const destino =
+                elementoDestino.getBoundingClientRect().top + window.scrollY;
+
+            const distancia = destino - inicio;
+
+            // Velocidad constante para todos los botones
+            const velocidad = 1.2; // píxeles por milisegundo
+            const duracion = Math.abs(distancia) / velocidad;
+            const tiempoInicio = performance.now();
+
+            function animar(tiempoActual) {
+                const progreso = Math.min(
+                    (tiempoActual - tiempoInicio) / duracion,
+                    1
+                );
+
+                window.scrollTo(
+                    0,
+                    inicio + distancia * progreso
+                );
+
+                if (progreso < 1) {
+                    requestAnimationFrame(animar);
+                } else {
+                    window.scrollTo(0, destino);
+                    animacionActiva = false;
+                }
+            }
+
+            requestAnimationFrame(animar);
+        });
+    });
+});
+</script>
+
 <body>
 
-  <header>
-    <p class="logo">HOGAR NOÉ</p>
-    <p class="lema">Una nueva oportunidad de empezar</p>
-    <img src="imagenes/portada.jpg" alt="Hogar Noé" class="foto-portada">
-  </header>
+    <!-- ENCABEZADO -->
+    <header class="encabezado">
+        <div class="contenedor barra-navegacion">
 
-  <nav>
-    <a href="#inicio">Inicio</a>
-    <a href="#nosotros">Quiénes somos</a>
-    <a href="#programa">Nuestro programa</a>
-    <a href="#contacto">Contacto</a>
-  </nav>
+            <a href="#inicio" class="marca" aria-label="Hogar Noé, inicio">
+                <span class="marca-simbolo">N</span>
+                <span class="marca-texto">
+                    <strong>HOGAR NOÉ</strong>
+                    <small>Una nueva oportunidad de empezar</small>
+                </span>
+            </a>
 
-  <main>
-    <section class="portada" id="inicio">
-      <p class="etiqueta">CHAJARÍ · ENTRE RÍOS</p>
+            <nav class="navegacion" aria-label="Navegación principal">
+                <a href="#inicio">Inicio</a>
+                <a href="#nosotros">Nosotros</a>
+                <a href="#programa">Programa</a>
+                <a href="#boton-whatsapp-contacto">Contacto</a>
+                <a href="#donaciones">Donar</a>
+            </nav>
 
-      <h1>Siempre hay una oportunidad para volver a empezar.</h1>
+        </div>
+    </header>
 
-      <p>
-        Un espacio de convivencia, acompañamiento,
-        trabajo y crecimiento espiritual.
-      </p>
 
-      <a class="boton" href="#contacto">
-        Comunicate con nosotros
-      </a>
+    <main>
 
-      <a class="boton boton-claro" href="#programa">
-        Conocé nuestro programa
-      </a>
-    </section>
+        <!-- PORTADA -->
+   
+<section class="portada" id="inicio">
 
-    <section class="seccion" id="nosotros">
-      <h2>Bienvenidos a Hogar Noé</h2>
+    <img
+        src="imagenes/portada.jpg"
+        alt="Hogar Noé, un espacio de fe, acompañamiento y esperanza en Chajarí"
+        class="foto-portada"
+    >
 
-      <p>
-        Creemos que cada persona merece la oportunidad
-        de comenzar una nueva etapa. Promovemos la
-        convivencia, la responsabilidad, el trabajo
-        cotidiano y la búsqueda de Dios.
-      </p>
+    <div class="portada-capa"></div>
 
-      <p>
-        Nuestro propósito es acompañar a las personas
-        en un camino de cambio y crecimiento.
-      </p>
-    </section>
+    <div class="contenedor portada-contenido">
 
-    
-<section class="programa" id="programa">
-  <h2>Nuestro programa</h2>
+        <span class="etiqueta-portada">
+            HOGAR NOÉ · CHAJARÍ, ENTRE RÍOS
+        </span>
 
-  <p>
-    En Hogar Noé acompañamos a las personas que buscan
-    una nueva oportunidad para reconstruir sus vidas,
-    en un entorno de convivencia, responsabilidad y fe.
-  </p>
+        <h1>
+            Una nueva oportunidad
+            <span>de empezar</span>
+        </h1>
 
-  <div class="tarjetas-programa">
-    <article class="tarjeta">
-      <h3>🤝 Convivencia</h3>
-      <p>
-        Promovemos el respeto, el orden, las responsabilidades
-        compartidas y el cumplimiento de las normas de convivencia.
-      </p>
-    </article>
+        <div class="linea-dorada"></div>
 
-    <article class="tarjeta">
-      <h3>🙏 Fe y crecimiento espiritual</h3>
-      <p>
-        Compartimos tiempos de oración, lectura bíblica,
-        estudio de la Palabra y reuniones cristianas.
-      </p>
-    </article>
+        <p>
+            Un espacio de acompañamiento, fe y convivencia
+            para quienes buscan dejar atrás las adicciones
+            y comenzar una nueva etapa junto a Dios.
+        </p>
 
-    <article class="tarjeta">
-      <h3>🧹 Hábitos y responsabilidades</h3>
-      <p>
-        Fomentamos las tareas cotidianas, la higiene personal,
-        el cuidado de los espacios y el desarrollo de hábitos saludables.
-      </p>
-    </article>
+        <div class="portada-botones">
 
-    <article class="tarjeta">
-      <h3>👨‍👩‍👦 Acompañamiento familiar</h3>
-      <p>
-        Mantenemos el contacto con las familias y coordinamos
-        las entrevistas para conocer cada situación.
-      </p>
-    </article>
-  </div>
+            <a href="#programa" class="boton boton-dorado">
+                Conocé nuestro programa
+            </a>
 
-  <p class="nota-programa">
-    Para conocer las condiciones de ingreso y las opciones
-    de acompañamiento, comunicate con nosotros.
-  </p>
+        </div>
 
- 
-<a class="boton-whatsapp"
-   href="https://wa.me/5491173734720?text=Hola%2C%20quisiera%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20tratamiento%20y%20el%20programa%20de%20Hogar%20No%C3%A9."
-   target="_blank"
-   rel="noopener noreferrer">
-  Consultar por el programa
-</a>
+    </div>
+
+    <div class="portada-pie">
+        <span>Fe</span>
+        <span class="separador">◆</span>
+        <span>Esperanza</span>
+        <span class="separador">◆</span>
+        <span>Nuevos comienzos</span>
+    </div>
 
 </section>
 
-    <section class="contacto" id="contacto">
-      <h2>¿Querés conocer más?</h2>
 
-      <p>
-        Comunicate con nosotros para consultar
-        por el programa y las entrevistas de ingreso.
-      </p>
 
-      <p><strong>Hogar Noé</strong></p>
-      <p>Chajarí, Entre Ríos</p>
+        <!-- PRESENTACIÓN -->
+        <section class="seccion nosotros" id="nosotros">
+
+            <div class="contenedor nosotros-contenido">
+
+                <div class="titulo-seccion">
+                    <span class="sobretitulo">BIENVENIDOS A HOGAR NOÉ</span>
+
+                    <h2>Un lugar para volver a empezar</h2>
+
+                    <div class="linea-dorada"></div>
+                </div>
+
+                <p class="texto-presentacion">
+                    En Hogar Noé creemos que siempre existe la posibilidad
+                    de comenzar una nueva etapa. Promovemos la convivencia,
+                    la fe en Dios, la responsabilidad y la construcción
+                    de hábitos saludables en la vida cotidiana.
+                </p>
+
+                <p class="texto-presentacion">
+                    A través de una rutina organizada, el acompañamiento
+                    y la búsqueda de crecimiento espiritual, buscamos
+                    fomentar un ambiente de respeto, compromiso y esperanza.
+                </p>
+
+                <div class="frase-biblica">
+                    <span class="comilla">“</span>
+                    <p>
+                        He aquí que yo hago cosa nueva;
+                        pronto saldrá a luz.
+                    </p>
+                    <span class="referencia">Isaías 43:19 · RVR1960</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROGRAMA -->
+        
+<section class="seccion programa" id="programa">
+
+    <div class="contenedor">
+
+        <div class="titulo-seccion titulo-centrado">
+            <span class="sobretitulo">NUESTRO CAMINO</span>
+
+            <h2>Los pilares de Hogar Noé</h2>
+
+            <p class="subtitulo-seccion">
+                Seis pilares que acompañan nuestra vida cotidiana,
+                la convivencia y el camino hacia una nueva etapa.
+            </p>
+
+            <div class="linea-dorada"></div>
+        </div>
+
+        <div class="tarjetas-programa">
+
+            <!-- PILAR 1 -->
+            <article class="tarjeta">
+                <div class="icono-tarjeta" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 11.5 12 4l9 7.5"></path>
+                        <path d="M5.5 10v10h13V10"></path>
+                        <path d="M9 20v-6h6v6"></path>
+                    </svg>
+                </div>
+
+                <h3>Convivencia</h3>
+
+                <p>
+                    Fomentamos el respeto mutuo, el orden,
+                    la colaboración y el cumplimiento de las
+                    normas para construir una convivencia saludable.
+                </p>
+            </article>
+
+            <!-- PILAR 2 -->
+            <article class="tarjeta">
+                <div class="icono-tarjeta" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 21s-8-4.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6.5-8 11-8 11Z"></path>
+                        <path d="M12 7v8"></path>
+                        <path d="M9 11h6"></path>
+                    </svg>
+                </div>
+
+                <h3>Fe y crecimiento espiritual</h3>
+
+                <p>
+                    Compartimos tiempos de oración, lectura bíblica,
+                    reflexión y actividades cristianas para fortalecer
+                    nuestra relación con Dios.
+                </p>
+            </article>
+
+            <!-- PILAR 3 -->
+            <article class="tarjeta">
+                <div class="icono-tarjeta" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 3v18"></path>
+                        <path d="M5 7h14"></path>
+                        <path d="M7 7 3.5 13h7L7 7Z"></path>
+                        <path d="m17 7-3.5 6h7L17 7Z"></path>
+                        <path d="M8 21h8"></path>
+                    </svg>
+                </div>
+
+                <h3>Hábitos y responsabilidades</h3>
+
+                <p>
+                    Promovemos el cumplimiento de las tareas diarias,
+                    la higiene personal, el orden, la constancia
+                    y el compromiso con nuestras responsabilidades.
+                </p>
+            </article>
+
+            <!-- PILAR 4 -->
+            <article class="tarjeta">
+                <div class="icono-tarjeta" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="9" cy="8" r="3"></circle>
+                        <path d="M3 20v-2a6 6 0 0 1 12 0v2"></path>
+                        <path d="M16 5a3 3 0 0 1 0 6"></path>
+                        <path d="M18 14a5 5 0 0 1 3 4v2"></path>
+                    </svg>
+                </div>
+
+                <h3>Acompañamiento familiar</h3>
+
+                <p>
+                    Valoramos la comunicación con las familias
+                    y su participación durante el proceso,
+                    de acuerdo con las pautas del hogar.
+                </p>
+            </article>
+
+            <!-- PILAR 5 -->
+            <article class="tarjeta">
+                <div class="icono-tarjeta" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 3v18"></path>
+                        <path d="M5 7h14"></path>
+                        <path d="M7 7 4 13h6L7 7Z"></path>
+                        <path d="m17 7-3 6h6l-3-6Z"></path>
+                        <path d="M6 21h12"></path>
+                    </svg>
+                </div>
+
+                <h3>Trabajo y servicio</h3>
+
+                <p>
+                    Impulsamos el esfuerzo, la colaboración
+                    y el servicio en las tareas cotidianas,
+                    aprendiendo a trabajar en equipo y ayudar a otros.
+                </p>
+            </article>
+
+            <!-- PILAR 6 -->
+            <article class="tarjeta">
+                <div class="icono-tarjeta" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 3v18"></path>
+                        <path d="M5 7h14"></path>
+                        <path d="M12 3 9 7l3 4 3-4-3-4Z"></path>
+                        <path d="M7 14a5 5 0 0 0 10 0"></path>
+                        <path d="M9 18h6"></path>
+                    </svg>
+                </div>
+
+                <h3>Esperanza y nuevos comienzos</h3>
+
+                <p>
+                    Acompañamos la construcción de nuevos objetivos,
+                    decisiones responsables y un proyecto de vida
+                    basado en la fe, la esperanza y el compromiso.
+                </p>
+            </article>
+
+        </div>
+
+        <div class="programa-aclaracion">
+            <p>
+                Las actividades cristianas y de convivencia forman
+                parte de la propuesta de Hogar Noé. No sustituyen
+                la evaluación ni el tratamiento brindado por
+                profesionales de la salud.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- DONACIONES -->
+<section id="donaciones" class="seccion donaciones">
+    <div class="contenedor">
+
+        <div class="encabezado-seccion">
+            <span class="etiqueta-seccion">SUMATE A ESTA MISIÓN</span>
+
+            <h2>Ayudanos a seguir adelante</h2>
+
+            <p>
+                Cada colaboración es una oportunidad para acompañar
+                a quienes buscan comenzar una nueva etapa de su vida.
+            </p>
+        </div>
+
+        <div class="tarjetas-donaciones">
+
+            <article class="tarjeta-donacion">
+                <div class="icono-donacion" aria-hidden="true">🍞</div>
+                <h3>Alimentos</h3>
+                <p>
+                    Podés colaborar con alimentos para las comidas
+                    diarias de las personas que viven en el hogar.
+                </p>
+            </article>
+
+            <article class="tarjeta-donacion">
+                <div class="icono-donacion" aria-hidden="true">🧼</div>
+                <h3>Higiene personal</h3>
+                <p>
+                    Recibimos jabón, champú, pasta dental, cepillos
+                    de dientes y otros artículos de higiene.
+                </p>
+            </article>
+
+            <article class="tarjeta-donacion">
+                <div class="icono-donacion" aria-hidden="true">🧱</div>
+                <h3>Materiales de construcción</h3>
+                <p>
+                    Los materiales y elementos para mejorar las
+                    instalaciones también son de gran ayuda.
+                </p>
+            </article>
+
+            <article class="tarjeta-donacion">
+                <div class="icono-donacion" aria-hidden="true">🤝</div>
+                <h3>Aportes económicos</h3>
+                <p>
+                    Las contribuciones económicas ayudan a afrontar
+                    los gastos y las necesidades cotidianas del hogar.
+                </p>
+            </article>
+
+        </div>
+
+        <div class="mensaje-donaciones">
+            <h3>Tu ayuda puede marcar la diferencia</h3>
+
+            <p>
+                Si querés colaborar, comunicate con nosotros para
+                conocer las necesidades actuales y coordinar tu aporte.
+            </p>
+
+            <div class="botones-donaciones">
+
+                <a
+                    class="boton boton-dorado"
+                    href="https://wa.me/5491173734720?text=Hola%2C%20quiero%20colaborar%20con%20Hogar%20No%C3%A9."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Quiero colaborar
+                </a>
+
+                <a
+                    class="boton boton-dorado"
+                    href="https://link.mercadopago.com.ar/centronoe"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <svg
+                        viewBox="0 0 24 24"
+                        width="20"
+                        height="20"
+                        aria-hidden="true"
+                    >
+                        <rect
+                            x="2"
+                            y="2"
+                            width="20"
+                            height="20"
+                            rx="10"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                        />
+                        <path
+                            d="M6 12h12M12 6v12"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                        />
+                    </svg>
+                    Donar por Mercado Pago
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
 
       
 
 
-<a class="boton-whatsapp"
-   href="https://wa.me/5491173734720"
-   target="_blank"
-   rel="noopener noreferrer">
-  Consultar por WhatsApp
+        <!-- CONTACTO -->
+        <section class="seccion contacto" id="contacto">
+
+
+            <div class="contenedor contacto-contenido">
+
+                <span class="sobretitulo">ESTAMOS PARA ESCUCHARTE</span>
+
+                <h2>Comunicate con Hogar Noé</h2>
+
+                <p>
+                    Si necesitás información sobre el hogar,
+                    el programa o el proceso de admisión,
+                    podés comunicarte con nosotros.
+                </p>
+
+                <div class="contacto-ubicacion">
+                    <span class="punto-ubicacion" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path>
+                            <circle cx="12" cy="10" r="2.5"></circle>
+                        </svg>
+                    </span>
+
+                    <span>Chajarí, Entre Ríos, Argentina</span>
+                </div>
+
+                
+<a
+    id="boton-whatsapp-contacto"
+    href="https://wa.me/5491173734720?text=Hola%2C%20quisiera%20comunicarme%20con%20Hogar%20No%C3%A9."
+    class="boton boton-whatsapp"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z"></path>
+        <path d="M9 8.5c.3 2 2 3.8 4 4.5l1.5-1.2 2 1c-.2 1.5-1.3 2.2-2.5 2.2-3.5-.4-6.6-3.5-7-7 0-1.2.7-2.3 2.2-2.5l1 2L9 8.5Z"></path>
+    </svg>
+    Consultar por WhatsApp
 </a>
 
 
-    </section>
-  </main>
+                <p class="contacto-nota">
+                    Consultá por disponibilidad y condiciones de admisión.
+                </p>
 
-  <footer>
-    <p>Hogar Noé · Chajarí, Entre Ríos</p>
-    <p>Una nueva oportunidad de empezar.</p>
-  </footer>
+            </div>
+<div class="contactos-extra">
+    <h3>También podés comunicarte con nosotros</h3>
+
+   
+<a class="enlace-contacto"
+   href="https://mail.google.com/mail/?view=cm&to=centronoechajari@gmail.com"
+   target="_blank"
+   rel="noopener noreferrer">
+    ✉️ Escribinos por correo electrónico
+</a>
+
+
+    <a class="enlace-contacto"
+       href="https://www.tiktok.com/@fundacionnoe"
+       target="_blank"
+       rel="noopener noreferrer">
+        🎵 Seguinos en TikTok
+    </a>
+</div>
+
+<!-- UBICACIÓN DE HOGAR NOÉ -->
+<section class="seccion ubicacion-hogar" id="ubicacion">
+    <div class="contenedor">
+        <div class="ubicacion-contenido">
+            <span class="sobretitulo">ESTAMOS PARA ACOMPAÑARTE</span>
+
+            <h2>Encontranos en Chajarí</h2>
+
+            <p>
+                Hogar Noé está en Chajarí, Entre Ríos.
+                Si vos o un familiar necesitan información,
+                comunicate con nosotros y te orientaremos.
+            </p>
+
+            <div class="ubicacion-tarjeta">
+                <div class="ubicacion-icono" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path>
+                        <circle cx="12" cy="10" r="2.5"></circle>
+                    </svg>
+                </div>
+
+                <div class="ubicacion-datos">
+                    <h3>Hogar Noé</h3>
+                    <p>Chajarí, Entre Ríos, Argentina</p>
+                    <span>Una nueva oportunidad de empezar</span>
+                </div>
+
+                <a
+                    class="boton boton-verde"
+                    href="https://maps.app.goo.gl/8Wy9pmfeSAqkntsN7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Cómo llegar
+                </a>
+            </div>
+
+            <p class="ubicacion-nota">
+                Abrí el mapa para consultar la ubicación exacta
+                y obtener indicaciones para llegar.
+            </p>
+        </div>
+    </div>
+</section>
+
+        </section>
+
+    </main>
+
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="pie-pagina">
+
+        <div class="contenedor pie-contenido">
+
+            <a href="#inicio" class="pie-marca">HOGAR NOÉ</a>
+
+            <p>
+                Una nueva oportunidad de empezar.
+            </p>
+
+            <span class="pie-ubicacion">
+                Chajarí, Entre Ríos
+            </span>
+
+            <div class="pie-linea"></div>
+
+            <small>
+                © <span id="anio"></span> Hogar Noé. Todos los derechos reservados.
+            </small>
+
+        </div>
+
+    </footer>
+
+
+    <script>
+        document.getElementById("anio").textContent =
+            new Date().getFullYear();
+    </script>
 
 </body>
 </html>
